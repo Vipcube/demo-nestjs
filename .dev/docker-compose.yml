@@ -1,0 +1,13 @@
+version: '3.7'
+
+services:
+  fluentd:
+    image: fluent/fluentd:edge
+    hostname: fluentd
+    ports:
+      - "24224:24224"
+      - "24224:24224/udp"
+    environment:
+      - FLUENTD_CONF=fluentd.conf
+    volumes:
+      - ./conf/fluentd.conf:/fluentd/etc/fluentd.conf
