@@ -7,3 +7,6 @@ export const SERVICE_PATTERNS = {
     SUM: { cmd: 'sum' }
   }
 }
+
+// Kafka
+export const TOPIC_HELLO = 'hello-world'

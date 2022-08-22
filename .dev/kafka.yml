@@ -32,6 +32,23 @@ services:
     networks:
       - messagequeue
 
+  kafka-ui:
+    image: provectuslabs/kafka-ui:v0.4.0
+    hostname: kafka-ui
+    ports:
+      - "9021:8080"
+    depends_on:
+      - zookeeper
+      - kafka
+    environment:
+      SERVER_SERVLET_CONTEXT_PATH: /kafka-ui
+      KAFKA_CLUSTERS_0_NAME: local
+      KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: kafka:29092
+      KAFKA_CLUSTERS_0_PROPERTIES_SECURITY_PROTOCOL: PLAINTEXT
+      KAFKA_CLUSTERS_0_ZOOKEEPER: zookeeper:2181
+    networks:
+      - messagequeue
+
 networks:
   messagequeue:
     name: messagequeue
