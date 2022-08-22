@@ -1,11 +1,11 @@
 import { Module } from '@nestjs/common';
-import { ConfigModule } from '@nestjs/config';
+import { ConfigModule, ConfigService } from "@nestjs/config";
 import { WinstonModule, utilities } from 'nest-winston';
 import * as winston from 'winston';
 import * as fluentLogger from 'fluent-logger';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import environment, { AppConfig } from './../environments';
+import environment from './../environments';
 
 const fluentTransport = fluentLogger.support.winstonTransport();
 
@@ -16,13 +16,13 @@ const fluentTransport = fluentLogger.support.winstonTransport();
       isGlobal: true,
     }),
     WinstonModule.forRootAsync({
-      useFactory: (config: AppConfig) => ({
+      useFactory: (config: ConfigService) => ({
         defaultMeta: { app: 'logging-fluentd' },
         transports: [
           new fluentTransport('app', {
-            host: config.host,
-            port: config.port,
-            timeout: config.timeout,
+            host: config.get<string>('host'),
+            port: config.get<number>('port'),
+            timeout: config.get<number>('timeout'),
           }),
           new winston.transports.Console({
             format: winston.format.combine(
@@ -34,7 +34,7 @@ const fluentTransport = fluentLogger.support.winstonTransport();
           }),
         ],
       }),
-      inject: [environment.KEY],
+      inject: [ConfigService],
     }),
   ],
   controllers: [AppController],
