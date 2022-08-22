@@ -1,0 +1,57 @@
+{
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/kafka-consumer/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/node:webpack",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/kafka-consumer",
+        "main": "apps/kafka-consumer/src/main.ts",
+        "tsConfig": "apps/kafka-consumer/tsconfig.app.json",
+        "assets": ["apps/kafka-consumer/src/assets"]
+      },
+      "configurations": {
+        "production": {
+          "optimization": true,
+          "extractLicenses": true,
+          "inspect": false,
+          "fileReplacements": [
+            {
+              "replace": "apps/kafka-consumer/src/environments/environment.ts",
+              "with": "apps/kafka-consumer/src/environments/environment.prod.ts"
+            }
+          ]
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/node:node",
+      "options": {
+        "buildTarget": "kafka-consumer:build"
+      },
+      "configurations": {
+        "production": {
+          "buildTarget": "kafka-consumer:build:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/kafka-consumer/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/apps/kafka-consumer"],
+      "options": {
+        "jestConfig": "apps/kafka-consumer/jest.config.ts",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": ["platform:backend"]
+}

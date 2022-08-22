@@ -16,7 +16,7 @@ async function bootstrap() {
   await app.startAllMicroservices();
   await app.listen(3000);
   Logger.log(
-    `🚀 Application is running on: ${await app.getUrl()}`
+    `🚀 Producer Application is running on: ${await app.getUrl()}`
   );
 }
 

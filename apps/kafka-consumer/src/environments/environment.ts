@@ -1,4 +1,4 @@
-import {KafkaOptions, Transport} from "@nestjs/microservices";
+import { KafkaOptions, Transport } from "@nestjs/microservices";
 
 export const environment = {
   production: false,
@@ -8,12 +8,12 @@ export const microserviceConfig: KafkaOptions = {
   transport: Transport.KAFKA,
   options: {
     client: {
-      clientId: 'kafka-producer',
+      clientId: 'kafka-consumer',
       brokers: ["localhost:9092"],
     },
-    producer: {
-      allowAutoTopicCreation: true
+    consumer: {
+      groupId: 'hello',
+      allowAutoTopicCreation: true,
     },
-    producerOnlyMode: true
   }
 };

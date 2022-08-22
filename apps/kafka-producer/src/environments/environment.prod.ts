@@ -11,9 +11,9 @@ export const microserviceConfig: KafkaOptions = {
       clientId: 'kafka-producer',
       brokers: ["localhost:9092"],
     },
-    consumer: {
-      groupId: '1',
-      allowAutoTopicCreation: true,
+    producer: {
+      allowAutoTopicCreation: true
     },
+    producerOnlyMode: true,
   }
 };

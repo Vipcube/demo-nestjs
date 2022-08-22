@@ -14,9 +14,9 @@ describe('AppService', () => {
   });
 
   describe('getData', () => {
-    it('should return "Welcome to kafka-producer!"', () => {
-      expect(service.producer('test')).toEqual({
-        message: 'producer ok'
+    it('should return "Welcome to kafka-consumer!"', () => {
+      expect(service.getData()).toEqual({
+        message: 'Welcome to kafka-consumer!',
       });
     });
   });

@@ -2,6 +2,7 @@
   "$schema": "./node_modules/nx/schemas/workspace-schema.json",
   "version": 2,
   "projects": {
+    "kafka-consumer": "apps/kafka-consumer",
     "kafka-producer": "apps/kafka-producer",
     "logging-fluentd": "apps/logging-fluentd",
     "microservice-constraints": "libs/microservice-constraints",
