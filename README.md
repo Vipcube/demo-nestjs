@@ -21,6 +21,7 @@ When using Nx, you can create multiple applications and libraries in the same wo
 Run `nx g @nrwl/nest:lib my-lib` to generate a library.
 
 > You can also use any of the plugins above to generate libraries as well.
+> Example: @nrwl/workspace, @nrwl/js, @nrwl/node
 
 Libraries are shareable across libraries and applications. They can be imported from `@demo-nestjs/mylib`.
 

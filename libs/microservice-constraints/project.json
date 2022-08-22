@@ -1,0 +1,23 @@
+{
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/microservice-constraints/src",
+  "projectType": "library",
+  "targets": {
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/microservice-constraints/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/microservice-constraints"],
+      "options": {
+        "jestConfig": "libs/microservice-constraints/jest.config.ts",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": ["platform:backend"]
+}

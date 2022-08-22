@@ -3,6 +3,8 @@
   "version": 2,
   "projects": {
     "logging-fluentd": "apps/logging-fluentd",
+    "microservice-constraints": "libs/microservice-constraints",
+    "microservice-tcp-client": "apps/microservice-tcp-client",
     "microservice-tcp-server": "apps/microservice-tcp-server",
     "open-telemetry": "apps/open-telemetry",
     "open-tracing": "apps/open-tracing"

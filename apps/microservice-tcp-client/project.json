@@ -1,0 +1,57 @@
+{
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/microservice-tcp-client/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/node:webpack",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/microservice-tcp-client",
+        "main": "apps/microservice-tcp-client/src/main.ts",
+        "tsConfig": "apps/microservice-tcp-client/tsconfig.app.json",
+        "assets": ["apps/microservice-tcp-client/src/assets"]
+      },
+      "configurations": {
+        "production": {
+          "optimization": true,
+          "extractLicenses": true,
+          "inspect": false,
+          "fileReplacements": [
+            {
+              "replace": "apps/microservice-tcp-client/src/environments/environment.ts",
+              "with": "apps/microservice-tcp-client/src/environments/environment.prod.ts"
+            }
+          ]
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/node:node",
+      "options": {
+        "buildTarget": "microservice-tcp-client:build"
+      },
+      "configurations": {
+        "production": {
+          "buildTarget": "microservice-tcp-client:build:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/microservice-tcp-client/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/apps/microservice-tcp-client"],
+      "options": {
+        "jestConfig": "apps/microservice-tcp-client/jest.config.ts",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": ["platform:backend"]
+}
