@@ -1,6 +1,5 @@
 import { environment } from './environment';
-import { ConfigType, registerAs } from '@nestjs/config';
+// import { registerAs } from '@nestjs/config';
 
-const config = registerAs('app', () => environment);
-export type AppConfig = ConfigType<typeof config>;
-export default config;
+// export default registerAs('app', () => environment);
+export default () => (environment);
