@@ -1,0 +1,57 @@
+{
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/open-tracing/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/node:webpack",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/open-tracing",
+        "main": "apps/open-tracing/src/main.ts",
+        "tsConfig": "apps/open-tracing/tsconfig.app.json",
+        "assets": ["apps/open-tracing/src/assets"]
+      },
+      "configurations": {
+        "production": {
+          "optimization": true,
+          "extractLicenses": true,
+          "inspect": false,
+          "fileReplacements": [
+            {
+              "replace": "apps/open-tracing/src/environments/environment.ts",
+              "with": "apps/open-tracing/src/environments/environment.prod.ts"
+            }
+          ]
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/node:node",
+      "options": {
+        "buildTarget": "open-tracing:build"
+      },
+      "configurations": {
+        "production": {
+          "buildTarget": "open-tracing:build:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/open-tracing/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/apps/open-tracing"],
+      "options": {
+        "jestConfig": "apps/open-tracing/jest.config.ts",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": ["platform:backend"]
+}

@@ -3,6 +3,7 @@
   "version": 2,
   "projects": {
     "logging-fluentd": "apps/logging-fluentd",
-    "open-telemetry": "apps/open-telemetry"
+    "open-telemetry": "apps/open-telemetry",
+    "open-tracing": "apps/open-tracing"
   }
 }
