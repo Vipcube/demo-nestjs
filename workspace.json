@@ -2,6 +2,7 @@
   "$schema": "./node_modules/nx/schemas/workspace-schema.json",
   "version": 2,
   "projects": {
+    "grpc-client": "apps/grpc-client",
     "grpc-domain": "libs/grpc-domain",
     "grpc-server": "apps/grpc-server",
     "kafka-consumer": "apps/kafka-consumer",
