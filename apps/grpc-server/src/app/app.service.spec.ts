@@ -15,7 +15,10 @@ describe('AppService', () => {
 
   describe('getData', () => {
     it('should return "Welcome to grpc-server!"', () => {
-      expect(service.getData()).toEqual({ message: 'Welcome to grpc-server!' });
+      expect(service.findOne({ id: 2 })).toEqual({
+        "id": 2,
+        "name": "Iangregsondev"
+      });
     });
   });
 });

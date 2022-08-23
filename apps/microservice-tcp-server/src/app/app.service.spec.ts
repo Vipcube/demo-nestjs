@@ -15,9 +15,7 @@ describe('AppService', () => {
 
   describe('getData', () => {
     it('should return "Welcome to microservice-tcp-server!"', () => {
-      expect(service.getData()).toEqual({
-        message: 'Welcome to microservice-tcp-server!',
-      });
+      expect(service.sum([1,2,3])).toEqual([6]);
     });
   });
 });

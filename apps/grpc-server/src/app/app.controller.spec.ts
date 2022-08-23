@@ -16,8 +16,9 @@ describe('AppController', () => {
   describe('getData', () => {
     it('should return "Welcome to grpc-server!"', () => {
       const appController = app.get<AppController>(AppController);
-      expect(appController.getData()).toEqual({
-        message: 'Welcome to grpc-server!',
+      expect(appController.findOne({id:2})).toEqual({
+        "id": 2,
+        "name": "Iangregsondev"
       });
     });
   });

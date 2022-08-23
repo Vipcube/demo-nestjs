@@ -16,9 +16,7 @@ describe('AppController', () => {
   describe('getData', () => {
     it('should return "Welcome to microservice-tcp-client!"', () => {
       const appController = app.get<AppController>(AppController);
-      expect(appController.getData()).toEqual({
-        message: 'Welcome to microservice-tcp-client!',
-      });
+      expect(appController.callRemoteSum([1,2,3])).toEqual([6]);
     });
   });
 });
