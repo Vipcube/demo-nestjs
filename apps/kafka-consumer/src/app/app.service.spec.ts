@@ -12,12 +12,4 @@ describe('AppService', () => {
 
     service = app.get<AppService>(AppService);
   });
-
-  describe('getData', () => {
-    it('should return "Welcome to kafka-consumer!"', () => {
-      expect(service.getData()).toEqual({
-        message: 'Welcome to kafka-consumer!',
-      });
-    });
-  });
 });

@@ -14,9 +14,12 @@ describe('AppController', () => {
   });
 
   describe('getData', () => {
-    it('should return "Welcome to microservice-tcp-client!"', () => {
+    it('should return "Welcome to grpc-server!"', () => {
       const appController = app.get<AppController>(AppController);
-      expect(appController.callRemoteSum([1,2,3])).toEqual([6]);
+      expect(appController.findOne({id:2})).toEqual({
+        "id": 2,
+        "name": "Iangregsondev"
+      });
     });
   });
 });

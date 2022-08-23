@@ -13,7 +13,7 @@ import { MicroserviceOptions, Transport } from "@nestjs/microservices";
  * This example contains a hybrid application (HTTP + TCP)
  */
 async function hybridBootstrap() {
-  const port = process.env.PORT || 3333;
+  const port = process.env.PORT || 3005;
   const app = await NestFactory.create(AppModule);
   app.connectMicroservice<MicroserviceOptions>({
       transport: Transport.TCP,

@@ -14,8 +14,11 @@ describe('AppService', () => {
   });
 
   describe('getData', () => {
-    it('should return "Welcome to microservice-tcp-server!"', () => {
-      expect(service.sum([1,2,3])).toEqual([6]);
+    it('should return "Welcome to grpc-server!"', () => {
+      expect(service.findOne({ id: 2 })).toEqual({
+        "id": 2,
+        "name": "Iangregsondev"
+      });
     });
   });
 });

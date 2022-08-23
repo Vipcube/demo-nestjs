@@ -8,6 +8,14 @@ This monorepo project was generated using [Nx](https://nx.dev).
 
 The demo projects let me know about the 3rd-party infra how to work with nestjs.
 
+## Install
+
+```shell
+npm install --legacy-peer-deps
+```
+
+`legacy-peer-deps` flags for old peer dependencies.
+
 ## Generate an application
 
 Run `nx g @nrwl/nest:app my-app` to generate an application.
