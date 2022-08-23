@@ -15,6 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@demo-nestjs/grpc-domain": ["libs/grpc-domain/src/index.ts"],
       "@demo-nestjs/microservice-constraints": [
         "libs/microservice-constraints/src/index.ts"
       ]
