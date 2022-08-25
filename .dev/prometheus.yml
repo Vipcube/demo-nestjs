@@ -30,6 +30,15 @@ services:
     networks:
       - monitor
 
+  nestjs:
+    image: demo-nestjs/open-telemetry:latest
+    hostname: nestjs
+    ports:
+      - "3006:3006"
+      - "9464:9464"
+    networks:
+      - monitor
+
 networks:
   monitor:
     name: monitor
