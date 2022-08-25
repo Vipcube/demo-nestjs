@@ -24,5 +24,19 @@
       "dependsOn": ["^build"]
     }
   },
+  "targetDependencies": {
+    "build": [
+      {
+        "target": "build",
+        "projects": "dependencies"
+      }
+    ],
+    "docker": [
+      {
+        "target": "build",
+        "projects": "self"
+      }
+    ]
+  },
   "defaultProject": "logging-fluentd"
 }
