@@ -1,0 +1,36 @@
+version: '3.7'
+
+services:
+  prometheus:
+    image: prom/prometheus:v2.38.0
+    hostname: prometheus
+    ports:
+      - "9090:9090"
+    command:
+      - "--config.file=/etc/prometheus/prometheus.yml"
+      - "--storage.tsdb.path=/prometheus"
+      - "--web.console.libraries=/usr/share/prometheus/console_libraries"
+      - "--web.console.templates=/usr/share/prometheus/consoles"
+    volumes:
+      - ./conf/prometheus.yml:/etc/prometheus/prometheus.yml
+    networks:
+      - monitor
+
+  grafana:
+    image: grafana/grafana:9.1.0
+    hostname: grafana
+    ports:
+      - "3000:3000"
+    environment:
+      GF_SECURITY_ADMIN_USER: admin
+      GF_SECURITY_ADMIN_PASSWORD: admin
+      GF_LOG_LEVEL: info
+    volumes:
+      - ./conf/grafana_datasource.yml:/etc/grafana/provisioning/datasources/default.yml
+    networks:
+      - monitor
+
+networks:
+  monitor:
+    name: monitor
+    driver: bridge
