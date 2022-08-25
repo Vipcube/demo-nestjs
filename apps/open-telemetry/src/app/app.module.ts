@@ -5,6 +5,7 @@ import { AppService } from './app.service';
 import { OpenTelemetryModule } from '@metinseylan/nestjs-opentelemetry';
 import { ZipkinExporter } from '@opentelemetry/exporter-zipkin';
 import { SimpleSpanProcessor } from "@opentelemetry/sdk-trace-base";
+import { PrometheusExporter } from "@opentelemetry/exporter-prometheus";
 
 @Module({
   imports: [
@@ -17,6 +18,10 @@ import { SimpleSpanProcessor } from "@opentelemetry/sdk-trace-base";
           url: 'http://localhost:9411/api/v2/spans',
         })
       ),
+      metricExporter: new PrometheusExporter({
+        endpoint: 'metrics',
+        port: 9464,
+      }),
     }),
   ],
   controllers: [AppController],
