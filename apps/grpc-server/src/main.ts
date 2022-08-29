@@ -12,12 +12,15 @@ import { HERO_PACKAGE_NAME } from "@demo-nestjs/grpc-domain";
 import * as path from "path";
 
 async function bootstrap() {
+  const port = process.env.PORT || 50051;
+  const host = process.env.HOST || 'localhost';
+
   const app = await NestFactory.createMicroservice<MicroserviceOptions>(AppModule, {
     transport: Transport.GRPC,
     options: {
       package: HERO_PACKAGE_NAME,
       protoPath: path.resolve(__dirname, '../../../libs/grpc-domain/proto/hero.proto'),
-      url: 'localhost:50051',
+      url: `${host}:${port}`,
     },
   });
   await app.listen();

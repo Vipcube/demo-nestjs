@@ -1,7 +1,7 @@
 import { Controller, Get, Param } from "@nestjs/common";
 
 import { AppService } from './app.service';
-import { Hero, HeroById } from "@demo-nestjs/grpc-domain";
+import { Hero } from "@demo-nestjs/grpc-domain";
 import { Observable } from "rxjs";
 
 @Controller('heroes')
