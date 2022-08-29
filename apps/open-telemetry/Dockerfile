@@ -15,7 +15,6 @@ COPY dist/apps/open-telemetry .
 COPY --from=deps /usr/src/app/node_modules ./node_modules
 COPY --from=deps /usr/src/app/package.json ./package.json
 
-EXPOSE 3006
-ENV PORT 3006
+EXPOSE 3006 9464
 
 CMD ["node", "main.js"]
