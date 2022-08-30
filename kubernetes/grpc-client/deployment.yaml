@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: grpc-client
+  namespace: backend
+  labels:
+    app: grpc-client
+spec:
+  replicas: 2
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: grpc-client
+    spec:
+      containers:
+        - name: grpc-client
+          image: demo-nestjs/grpc-client:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 3001
+          resources: {}
+          env:
+            - name: GRPC_SERVER
+              value: "grpc-server:50051"
+      restartPolicy: Always
+  selector:
+    matchLabels:
+      app: grpc-client
