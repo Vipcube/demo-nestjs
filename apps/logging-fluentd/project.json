@@ -51,6 +51,21 @@
         "jestConfig": "apps/logging-fluentd/jest.config.ts",
         "passWithNoTests": true
       }
+    },
+    "docker": {
+      "executor": "@nx-tools/nx-docker:build",
+      "options": {
+        "load": true,
+        "metadata": {
+          "images": ["demo-nestjs/logging-fluentd"],
+          "tags": [
+            "type=raw,value=latest",
+            "type=ref,event=branch",
+            "type=ref,event=tag",
+            "type=semver,pattern={{version}}"
+          ]
+        }
+      }
     }
   },
   "tags": ["platform:backend"]
