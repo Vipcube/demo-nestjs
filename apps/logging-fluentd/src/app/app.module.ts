@@ -6,6 +6,7 @@ import * as fluentLogger from 'fluent-logger';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import environment from './../environments';
+import { version } from './../../../../package.json';
 
 const fluentTransport = fluentLogger.support.winstonTransport();
 
@@ -17,11 +18,11 @@ const fluentTransport = fluentLogger.support.winstonTransport();
     }),
     WinstonModule.forRootAsync({
       useFactory: (config: ConfigService) => ({
-        defaultMeta: { app: 'logging-fluentd' },
+        defaultMeta: { app: 'logging-fluentd', version: version },
         transports: [
           new fluentTransport('app', {
-            host: config.get<string>('host'),
-            port: config.get<number>('port'),
+            host: config.get<string>('FLUENTD_HOST') || config.get<string>('host'),
+            port: config.get<number>('FLUENTD_PORT') || config.get<number>('port'),
             timeout: config.get<number>('timeout'),
           }),
           new winston.transports.Console({

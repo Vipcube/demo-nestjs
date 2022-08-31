@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: logging-fluentd
+  namespace: backend
+  labels:
+    app: logging-fluentd
+spec:
+  replicas: 1
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: logging-fluentd
+    spec:
+      containers:
+        - name: logging-fluentd
+          image: demo-nestjs/logging-fluentd:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 3002
+          resources: {}
+          env:
+            - name: FLUENTD_HOST
+              value: "fluentd-forwarder.infra"
+            - name: FLUENTD_PORT
+              value: "24224"
+      restartPolicy: Always
+  selector:
+    matchLabels:
+      app: logging-fluentd
