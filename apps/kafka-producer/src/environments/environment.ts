@@ -9,7 +9,7 @@ export const microserviceConfig: KafkaOptions = {
   options: {
     client: {
       clientId: 'kafka-producer',
-      brokers: ["localhost:9092"],
+      brokers: [process.env.KAFKA_BROKES || "localhost:9092"],
     },
     producer: {
       allowAutoTopicCreation: true
