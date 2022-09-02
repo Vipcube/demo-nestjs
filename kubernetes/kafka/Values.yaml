@@ -914,7 +914,7 @@ persistence:
     - ReadWriteOnce
   ## @param persistence.size PVC Storage Request for Kafka data volume
   ##
-  size: 8Gi
+  size: 4Gi
   ## @param persistence.annotations Annotations for the PVC
   ##
   annotations: {}
@@ -951,7 +951,7 @@ logPersistence:
     - ReadWriteOnce
   ## @param logPersistence.size PVC Storage Request for Kafka logs volume
   ##
-  size: 8Gi
+  size: 4Gi
   ## @param logPersistence.annotations Annotations for the PVC
   ##
   annotations: {}
@@ -1052,7 +1052,7 @@ metrics:
   kafka:
     ## @param metrics.kafka.enabled Whether or not to create a standalone Kafka exporter to expose Kafka metrics
     ##
-    enabled: false
+    enabled: true
     ## Bitnami Kafka exporter image
     ## ref: https://hub.docker.com/r/bitnami/kafka-exporter/tags/
     ## @param metrics.kafka.image.registry Kafka exporter image registry
@@ -1288,7 +1288,7 @@ metrics:
   jmx:
     ## @param metrics.jmx.enabled Whether or not to expose JMX metrics to Prometheus
     ##
-    enabled: false
+    enabled: true
     ## Bitnami JMX exporter image
     ## ref: https://hub.docker.com/r/bitnami/jmx-exporter/tags/
     ## @param metrics.jmx.image.registry JMX exporter image registry
@@ -1692,7 +1692,7 @@ zookeeper:
     storageClass: ""
     accessModes:
       - ReadWriteOnce
-    size: 8Gi
+    size: 4Gi
 
 ## External Zookeeper Configuration
 ## All of these values are only used if `zookeeper.enabled=false`
