@@ -22,7 +22,7 @@ spec:
           resources: {}
           env:
             - name: KAFKA_BROKERS
-              value: kafka-0.kafka-headless.infra.svc.cluster.local:9093
+              value: '["kafka-0.kafka-headless.infra.svc.cluster.local:9093","kafka-1.kafka-headless.infra.svc.cluster.local:9093","kafka-2.kafka-headless.infra.svc.cluster.local:9093"]'
       restartPolicy: Always
   selector:
     matchLabels:
