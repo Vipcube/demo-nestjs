@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kafka-producer
+  namespace: backend
+  labels:
+    app: kafka-producer
+spec:
+  replicas: 1
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: kafka-producer
+    spec:
+      containers:
+        - name: kafka-producer
+          image: demo-nestjs/kafka-producer:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 3000
+          resources: {}
+          env:
+            - name: KAFKA_BROKERS
+              value: kafka-0.kafka-headless.infra.svc.cluster.local:9093
+      restartPolicy: Always
+  selector:
+    matchLabels:
+      app: kafka-producer

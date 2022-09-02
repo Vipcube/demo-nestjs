@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kafka-consumer
+  namespace: backend
+  labels:
+    app: kafka-consumer
+spec:
+  replicas: 1
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: kafka-consumer
+    spec:
+      containers:
+        - name: kafka-consumer
+          image: demo-nestjs/kafka-consumer:latest
+          imagePullPolicy: IfNotPresent
+          resources: {}
+          env:
+            - name: KAFKA_BROKERS
+              value: kafka-0.kafka-headless.infra.svc.cluster.local:9093
+      restartPolicy: Always
+  selector:
+    matchLabels:
+      app: kafka-consumer
