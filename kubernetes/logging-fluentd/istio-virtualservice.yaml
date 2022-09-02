@@ -7,7 +7,7 @@ spec:
   hosts:
     - "api.backend.com"
   gateways:
-    - gateway
+    - backend-gateway
   http:
     - match:
         - uri:

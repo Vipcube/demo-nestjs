@@ -1,7 +1,7 @@
 apiVersion: networking.istio.io/v1alpha3
 kind: Gateway
 metadata:
-  name: gateway
+  name: backend-gateway
   namespace: backend
 spec:
   selector:
@@ -13,3 +13,19 @@ spec:
         protocol: HTTP
       hosts:
         - "api.backend.com"
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: Gateway
+metadata:
+  name: infra-gateway
+  namespace: infra
+spec:
+  selector:
+    istio: ingressgateway
+  servers:
+    - port:
+        number: 8081
+        name: http
+        protocol: HTTP
+      hosts:
+        - "infra.backend.com"
