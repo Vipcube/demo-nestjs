@@ -7,7 +7,7 @@ spec:
   hosts:
     - "api.backend.com"
   gateways:
-    - backend-gateway
+    - istio-system/gateway
   http:
     - match:
         - uri:
