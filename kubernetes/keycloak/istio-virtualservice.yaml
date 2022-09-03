@@ -1,0 +1,19 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: keycloak
+  namespace: infra
+spec:
+  hosts:
+    - "infra.backend.com"
+  gateways:
+    - istio-system/gateway
+  http:
+    - match:
+        - uri:
+            prefix: /auth/
+      route:
+        - destination:
+            host: keycloak-http
+            port:
+              number: 9003
