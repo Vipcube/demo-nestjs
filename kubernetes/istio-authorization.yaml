@@ -1,0 +1,32 @@
+apiVersion: security.istio.io/v1beta1
+kind: RequestAuthentication
+metadata:
+  name: openid-auth
+  namespace: istio-system
+spec:
+  selector:
+    matchLabels:
+      app: istio-ingressgateway
+  jwtRules:
+    - issuer: "http://infra.backend.com/auth/realms/fondus"
+      jwksUri: "http://keycloak-http.infra.svc.cluster.local:9003/auth/realms/fondus/protocol/openid-connect/certs"
+      forwardOriginalToken: true
+      outputPayloadToHeader: x-jwt-payload
+---
+apiVersion: security.istio.io/v1beta1
+kind: AuthorizationPolicy
+metadata:
+  name: openid-policy
+  namespace: istio-system
+spec:
+  selector:
+    matchLabels:
+      app: istio-ingressgateway
+  rules:
+    - from:
+        - source:
+            requestPrincipals: [ "*" ]
+    - to:
+        - operation:
+            paths:
+              - "/auth/*"
