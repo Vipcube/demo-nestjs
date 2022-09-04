@@ -1,12 +1,22 @@
-
-
-# Demo-Nestjs
+# Demo NestJS Monorepo with microservices
 
 This monorepo project was generated using [Nx](https://nx.dev).
 
-<p style="text-align: center;"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="250"></p>
-
 This project is mainly used for learning/trial about nestjs and boilerplate purposes only.
+
+## Implements Overview
+
+This Microservice implements the following:
+
+- [gRPC Client](./apps/grpc-client)
+- [gRPC Server](./apps/grpc-server)
+- [Kafka Consumer](./apps/kafka-consumer)
+- [Kafka Producer](./apps/kafka-producer)
+- [Logging to Fluentd](./apps/logging-fluentd)
+- [Open Tracing](./apps/open-tracing)
+- [Open Telemetry with Jaeger](./apps/open-telemetry)
+- [Example with TCP Client](./apps/microservice-tcp-client)
+- [Example with TCP Server](./apps/microservice-tcp-server)
 
 ## Install
 
