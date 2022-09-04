@@ -6,7 +6,7 @@ This monorepo project was generated using [Nx](https://nx.dev).
 
 <p style="text-align: center;"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="250"></p>
 
-The demo projects let me know about the 3rd-party infra how to work with nestjs.
+This project is mainly used for learning/trial about nestjs and boilerplate purposes only.
 
 ## Install
 
