@@ -10,3 +10,23 @@ spec:
     - name: http
       port: 9021
       targetPort: 8080
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: kafka-ui
+  namespace: infra
+spec:
+  hosts:
+    - "infra.backend.com"
+  gateways:
+    - istio-system/gateway
+  http:
+    - match:
+        - uri:
+            prefix: /kafka-ui/
+      route:
+        - destination:
+            host: kafka-ui
+            port:
+              number: 9021

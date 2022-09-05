@@ -10,3 +10,25 @@ spec:
     - name: api
       port: 3002
       targetPort: 3002
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: logging-fluentd
+  namespace: backend
+spec:
+  hosts:
+    - "api.backend.com"
+  gateways:
+    - istio-system/gateway
+  http:
+    - match:
+        - uri:
+            prefix: /logging-fluentd/
+      rewrite:
+        uri: /
+      route:
+        - destination:
+            host: logging-fluentd
+            port:
+              number: 3002
