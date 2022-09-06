@@ -22,11 +22,14 @@ spec:
   selector:
     matchLabels:
       app: istio-ingressgateway
+  action: ALLOW
   rules:
     - from:
         - source:
             requestPrincipals: [ "*" ]
     - to:
         - operation:
+            hosts:
+              - "infra.backend.com"
             paths:
               - "/auth/*"
