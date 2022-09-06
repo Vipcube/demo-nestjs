@@ -21,9 +21,14 @@ kiali_route_url: ""
 istio_namespace: "" # default is where Kiali is installed
 
 auth:
-  openid: {}
+  openid:
+    client_id: "kiali-client"
+    disable_rbac: true
+    issuer_uri: "http://infra.backend.com/auth/realms/istio"
+    insecure_skip_verify_tls: true
   openshift: {}
-  strategy: anonymous
+  strategy: openid
+  #strategy: anonymous
 
 deployment:
   # This only limits what Kiali will attempt to see, but Kiali Service Account has permissions to see everything.
@@ -105,8 +110,5 @@ server:
   port: 20001
   metrics_enabled: true
   metrics_port: 9090
-  web_fqdn: infra.backend.com
-  web_port: 8080
-  web_root: /kiali
-  web_schema: http
+  web_root: ""
 

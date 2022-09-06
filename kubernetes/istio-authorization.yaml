@@ -8,8 +8,8 @@ spec:
     matchLabels:
       app: istio-ingressgateway
   jwtRules:
-    - issuer: "http://infra.backend.com/auth/realms/fondus"
-      jwksUri: "http://keycloak-http.infra.svc.cluster.local:9003/auth/realms/fondus/protocol/openid-connect/certs"
+    - issuer: "http://infra.backend.com/auth/realms/istio"
+      jwksUri: "http://keycloak-http.infra.svc.cluster.local:9003/auth/realms/istio/protocol/openid-connect/certs"
       forwardOriginalToken: true
       outputPayloadToHeader: x-jwt-payload
 ---

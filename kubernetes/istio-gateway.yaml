@@ -8,8 +8,18 @@ spec:
     istio: ingressgateway
   servers:
     - port:
-        number: 8080
+        number: 80
         name: http
         protocol: HTTP
       hosts:
         - "*.backend.com"
+#    - port:
+#        number: 443
+#        name: https-443
+#        protocol: HTTPS
+#      hosts:
+#        - "*.backend.com"
+#      tls:
+#        mode: SIMPLE
+#        serverCertificate: /etc/certs/servercert.pem
+#        privateKey: /etc/certs/privatekey.pem

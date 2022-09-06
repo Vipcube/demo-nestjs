@@ -12,10 +12,10 @@ spec:
     - match:
         - uri:
             prefix: /kiali/
-#      headers:
-#        request:
-#          set:
-#            X-Forwarded-Port: "8080"
+      headers:
+        request:
+          set:
+            X-Forwarded-Port: "80"
       route:
         - destination:
             host: kiali
