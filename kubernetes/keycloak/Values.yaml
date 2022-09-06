@@ -116,14 +116,24 @@ args: []
 
 # Additional environment variables for Keycloak
 extraEnv: |
-  - name: KEYCLOAK_USER
-    value: admin
-  - name: KEYCLOAK_PASSWORD
-    value: admin
-#  - name: KEYCLOAK_USER_FILE
-#    value: /run/secrets/keycloak_root_user
-#   - name: KEYCLOAK_PASSWORD_FILE
-#    value: /run/secrets/keycloak_root_password
+  - name: KEYCLOAK_USER_FILE
+    value: /run/secrets/keycloak/keycloak_root_user
+  - name: KEYCLOAK_PASSWORD_FILE
+    value: /run/secrets/keycloak/keycloak_root_password
+  - name: PROXY_ADDRESS_FORWARDING
+    value: "true"
+  - name: JGROUPS_DISCOVERY_PROTOCOL
+    value: dns.DNS_PING
+  - name: JGROUPS_DISCOVERY_PROPERTIES
+    value: 'dns_query={{ include "keycloak.serviceDnsName" . }}'
+  - name: CACHE_OWNERS_COUNT
+    value: "2"
+  - name: CACHE_OWNERS_AUTH_SESSIONS_COUNT
+    value: "2"
+#  - name: DB_USER_FILE
+#    value: /run/secrets/keycloak/database_user
+#  - name: DB_PASSWORD_FILE
+#    value: /run/secrets/keycloak/database_password
 #  - name: DB_VENDOR
 #    value: postgres
 #  - name: DB_ADDR
@@ -132,18 +142,10 @@ extraEnv: |
 #    value: "5432"
 #  - name: DB_DATABASE
 #    value: mydb
-#  - name: DB_USER_FILE
-#    value: /secrets/db-creds/user
-#  - name: DB_PASSWORD_FILE
-#    value: /secrets/db-creds/password
   # - name: KEYCLOAK_LOGLEVEL
   #   value: DEBUG
   # - name: WILDFLY_LOGLEVEL
   #   value: DEBUG
-  # - name: CACHE_OWNERS_COUNT
-  #   value: "2"
-  # - name: CACHE_OWNERS_AUTH_SESSIONS_COUNT
-  #   value: "2"
 
 # Additional environment variables for Keycloak mapped from Secret or ConfigMap
 extraEnvFrom: ""
@@ -241,11 +243,17 @@ startupScripts:
 extraVolumes: |
   - name: deployments
     emptyDir: {}
+  - name: keycloak-secret
+    secret:
+      secretName: keycloak-secret
 
 # Add additional volumes mounts, e. g. for custom themes
 extraVolumeMounts: |
   - name: deployments
     mountPath: /opt/jboss/keycloak/standalone/deployments
+  - name: keycloak-secret
+    mountPath: /run/secrets/keycloak
+    readOnly: true
 
 # Add additional ports, e. g. for admin console or exposing JGroups ports
 extraPorts: []
