@@ -12,6 +12,8 @@ spec:
     metadata:
       labels:
         app: logging-winston
+        app.version: 0.1.0
+        app.loki/io: 'true'
     spec:
       containers:
         - name: logging-winston
