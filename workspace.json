@@ -8,6 +8,7 @@
     "kafka-consumer": "apps/kafka-consumer",
     "kafka-producer": "apps/kafka-producer",
     "logging-fluentd": "apps/logging-fluentd",
+    "logging-winston": "apps/logging-winston",
     "microservice-constraints": "libs/microservice-constraints",
     "microservice-tcp-client": "apps/microservice-tcp-client",
     "microservice-tcp-server": "apps/microservice-tcp-server",

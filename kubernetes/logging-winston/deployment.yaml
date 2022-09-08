@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: logging-winston
+  namespace: backend
+  labels:
+    app: logging-winston
+spec:
+  replicas: 1
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: logging-winston
+    spec:
+      containers:
+        - name: logging-winston
+          image: demo-nestjs/logging-winston:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 3300
+          resources: {}
+      restartPolicy: Always
+  selector:
+    matchLabels:
+      app: logging-winston

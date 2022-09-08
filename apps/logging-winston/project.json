@@ -1,0 +1,72 @@
+{
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/logging-winston/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/node:webpack",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/logging-winston",
+        "main": "apps/logging-winston/src/main.ts",
+        "tsConfig": "apps/logging-winston/tsconfig.app.json",
+        "assets": ["apps/logging-winston/src/assets"]
+      },
+      "configurations": {
+        "production": {
+          "optimization": true,
+          "extractLicenses": true,
+          "inspect": false,
+          "fileReplacements": [
+            {
+              "replace": "apps/logging-winston/src/environments/environment.ts",
+              "with": "apps/logging-winston/src/environments/environment.prod.ts"
+            }
+          ]
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/node:node",
+      "options": {
+        "buildTarget": "logging-winston:build"
+      },
+      "configurations": {
+        "production": {
+          "buildTarget": "logging-winston:build:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/logging-winston/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/apps/logging-winston"],
+      "options": {
+        "jestConfig": "apps/logging-winston/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "docker": {
+      "executor": "@nx-tools/nx-docker:build",
+      "options": {
+        "load": true,
+        "metadata": {
+          "images": ["demo-nestjs/logging-winston"],
+          "tags": [
+            "type=raw,value=latest",
+            "type=ref,event=branch",
+            "type=ref,event=tag",
+            "type=semver,pattern={{version}}"
+          ]
+        }
+      }
+    }
+  },
+  "tags": ["platform:backend"]
+}
