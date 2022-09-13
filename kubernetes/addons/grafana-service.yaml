@@ -1,0 +1,19 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: grafana
+  namespace: infra
+spec:
+  hosts:
+    - "infra.backend.com"
+  gateways:
+    - istio-system/gateway
+  http:
+    - match:
+        - uri:
+            prefix: /grafana/
+      route:
+        - destination:
+            host: grafana
+            port:
+              number: 80
