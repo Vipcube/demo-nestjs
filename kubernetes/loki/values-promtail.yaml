@@ -165,7 +165,7 @@ config:
   # Must be reference in `config.file` to configure `clients`
   # @default -- See `values.yaml`
   clients:
-    - url: http://loki-gateway/loki/api/v1/push
+    - url: http://loki-gateway:8080/loki/api/v1/push
       tenant_id: 1
   #      basic_auth:
   #        username: loki

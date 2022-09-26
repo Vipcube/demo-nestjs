@@ -179,7 +179,7 @@ write:
     # -- Docker image repository for the write image. Overrides `loki.image.repository`
     repository: null
     # -- Docker image tag for the write image. Overrides `loki.image.tag`
-    tag: null
+    tag: 2.3.0
   # -- The name of the PriorityClass for write pods
   priorityClassName: null
   # -- Annotations for write pods
@@ -249,7 +249,7 @@ read:
     # -- Docker image repository for the read image. Overrides `loki.image.repository`
     repository: null
     # -- Docker image tag for the read image. Overrides `loki.image.tag`
-    tag: null
+    tag: 2.3.0
   # -- The name of the PriorityClass for read pods
   priorityClassName: null
   # -- Annotations for read pods
@@ -260,7 +260,9 @@ read:
   serviceLabels: {}
   # -- Additional CLI args for the read
   extraArgs:
-    - -querier.parallelise-shardable-queries=false
+    - -querier.split-queries-by-interval=24h
+    - -query-scheduler.max-outstanding-requests-per-tenant=10000
+    - -querier.max-outstanding-requests-per-tenant=10000
   # -- Environment variables to add to the read pods
   extraEnv: []
   # -- Environment variables from secrets or configmaps to add to the read pods
