@@ -259,7 +259,8 @@ read:
   # -- Labels for read service
   serviceLabels: {}
   # -- Additional CLI args for the read
-  extraArgs: []
+  extraArgs:
+    - -querier.parallelise-shardable-queries=false
   # -- Environment variables to add to the read pods
   extraEnv: []
   # -- Environment variables from secrets or configmaps to add to the read pods
