@@ -15,6 +15,6 @@ COPY dist/apps/logging-winston .
 COPY --from=deps /usr/src/app/node_modules ./node_modules
 COPY --from=deps /usr/src/app/package.json ./package.json
 
-EXPOSE 50051
+EXPOSE 3300
 
 CMD ["node", "main.js"]
