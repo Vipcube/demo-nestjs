@@ -378,7 +378,7 @@ gateway:
   # Gateway service configuration
   service:
     # -- Port of the gateway service
-    port: 80
+    port: 8080
     # -- Type of the gateway service
     type: ClusterIP
     # -- ClusterIP of the gateway service

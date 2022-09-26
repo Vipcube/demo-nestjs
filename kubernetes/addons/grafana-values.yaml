@@ -508,7 +508,7 @@ datasources:
     datasources:
     - name: loki
       type: loki
-      url: http://loki-gateway.infra:80
+      url: http://loki-gateway.infra:8080
       isDefault: true
       editable: false
 #    - name: CloudWatch
