@@ -56,6 +56,7 @@
       "executor": "@nx-tools/nx-docker:build",
       "options": {
         "load": true,
+        "platforms": ["linux/amd64"],
         "metadata": {
           "images": ["demo-nestjs/logging-winston"],
           "tags": [
