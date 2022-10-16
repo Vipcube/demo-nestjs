@@ -1,7 +1,6 @@
 apiVersion: install.istio.io/v1alpha1
 kind: IstioOperator
 metadata:
-  namespace: istio-system
   name: istiocontrolplane
 spec:
   profile: default
@@ -14,6 +13,5 @@ spec:
     defaultConfig:
       tracing:
         sampling: 100.0
-
-      zipkin:
-        address: jaeger-collector.infra:9411
+        zipkin:
+          address: jaeger-collector.infra:9411
