@@ -8,3 +8,12 @@ spec:
   values:
     global:
       istioNamespace: istio-system
+
+  meshConfig:
+    enableTracing: true
+    defaultConfig:
+      tracing:
+        sampling: 100.0
+
+      zipkin:
+        address: jaeger-collector.infra:9411
