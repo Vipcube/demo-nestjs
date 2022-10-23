@@ -7,11 +7,31 @@ spec:
   values:
     global:
       istioNamespace: istio-system
+      proxy:
+        resources:
+          limits:
+            cpu: 250m      #  In Istio 1.15.2, a proxy consumes about 0.5 vCPU per 1000 requests per second.
+            memory: 100Mi
+          requests:
+            cpu: 50m
+            memory: 50Mi
+
+    gateways:
+      istio-ingressgateway:
+        resources:
+          limits:
+            cpu: 1000m
+            memory: 1024Mi
+
+    pilot:
+      resources:
+        requests:
+          memory: 1024Mi
 
   meshConfig:
     enableTracing: true
     defaultConfig:
       tracing:
-        sampling: 100.0
+        sampling: 50.0
         zipkin:
           address: jaeger-collector.infra:9411
