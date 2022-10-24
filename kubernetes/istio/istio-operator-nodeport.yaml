@@ -19,6 +19,12 @@ spec:
     gateways:
       istio-ingressgateway:
         type: NodePort
+        ports:
+          - name: http2
+            nodePort: 31380
+            port: 80
+            protocol: TCP
+            targetPort: 8080
         resources:
           limits:
             cpu: 1000m
